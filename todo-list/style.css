@@ -1,0 +1,99 @@
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #e74c3c;
+      --hover-color: #f0f9ff; 
+      --completed-color: #6c757d; 
+      --bg-color: rgba(0, 0, 0, 0.5); 
+      --card-bg: rgba(255, 255, 255, 0.85);
+    }
+  
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("https://www.w3schools.com/w3images/forestbridge.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      color: #333;
+      padding: 0;
+      margin: 0;
+      height: 100vh;
+    }
+  
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+  
+    .card-body {
+      padding: 20px;
+    }
+  
+    h1 {
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+  
+    #task-list {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-top: 20px;
+    }
+  
+    #task-list .list-group-item {
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+  
+    #task-list .list-group-item:hover {
+      background-color: var(--hover-color);
+      transform: scale(1.03);
+    }
+  
+    #task-list .completed {
+      text-decoration: line-through;
+      color: var(--completed-color);
+      background-color: #e2e6ea;
+    }
+  
+    .list-group-item button {
+      transition: background-color 0.3s ease;
+    }
+  
+    .list-group-item button:hover {
+      background-color: var(--secondary-color);
+    }
+  
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      transition: background-color 0.3s ease;
+    }
+  
+    .btn-primary:hover {
+      background-color: darken(var(--primary-color), 10%);
+      border-color: darken(var(--primary-color), 10%);
+    }
+  
+    .btn-warning {
+      background-color: #f39c12;
+      border-color: #f39c12;
+      transition: background-color 0.3s ease;
+    }
+  
+    .btn-warning:hover {
+      background-color: darken(#f39c12, 10%);
+      border-color: darken(#f39c12, 10%);
+    }
+  
+    .btn-danger {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+      transition: background-color 0.3s ease;
+    }
+  
+    .btn-danger:hover {
+      background-color: darken(var(--secondary-color), 10%);
+      border-color: darken(var(--secondary-color), 10%);
+    }

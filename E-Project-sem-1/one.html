@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .auth-container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            height: 45px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .auth-btn {
+            background: black;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .toggle-link {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .toggle-link a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .forgot-password {
+            display: block;
+            margin: 10px 0 15px;
+            font-size: 14px;
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .forgot-password:hover {
+            color: black;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="auth-container">
+        <!-- Registration Form -->
+        <div id="register-form">
+            <h1>ELITE SPECS</h1>
+            <p>Create your account</p>
+            <form>
+                <input type="text" class="form-control" placeholder="Full Name">
+                <input type="email" class="form-control" placeholder="Email address">
+                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" placeholder="Confirm Password">
+                <button type="submit" class="auth-btn">Register</button>
+            </form>
+            <p class="toggle-link">Already have an account? <a onclick="toggleAuth()">Log in</a></p>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-form" class="hidden">
+            <h1>ELITE SPECS</h1>
+            <p>Great to have you back!</p>
+            <form>
+                <input type="email" class="form-control" placeholder="Email address">
+                <input type="password" class="form-control" placeholder="Password">
+                <a href="#" class="forgot-password">Forgot your password?</a>
+                <button type="submit" class="auth-btn">Log In</button>
+            </form>
+            <p class="toggle-link">Don't have an account? <a onclick="toggleAuth()">Register now</a></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleAuth() {
+            document.getElementById("register-form").classList.toggle("hidden");
+            document.getElementById("login-form").classList.toggle("hidden");
+        }
+    </script>
+
+</body>
+
+</html>

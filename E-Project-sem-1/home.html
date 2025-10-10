@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Project</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .carousel-caption {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+            color: white;
+            opacity: 0;
+            animation: fadeInText 1.2s ease-in-out forwards;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* glasses & lenses css */
+        .btn-custom {
+            background-color: #E76F51;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-custom:hover {
+            background-color: #D65A3B;
+        }
+
+        /* glasses & lenses css close  */
+
+
+
+
+
+
+
+
+
+
+
+        .loader-container {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header hidden">
+        <div class="menu-button" onclick="toggleSidebar()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="logo">
+            <img src="./images/logo.png" alt="Logo">
+        </div>
+        <div class="icons">
+            <!-- Search Icon -->
+            <img src="./images/search-icon.png"
+                alt="Search Icon" width="40" height="40" style="cursor: pointer;" onclick="openSearch()">
+            <a href="one.html"><img src="./images/user-icon.png" alt="User" width="40"
+                    height="40" style="cursor: pointer;"></a>
+            <img src="./images/heart-icon.png" alt="Heart">
+            <img src="./images/cart-icon.png" alt="Cart">
+        </div>
+    </div>
+
+    <!-- Search Overlay -->
+    <div id="searchOverlay" class="search-overlay">
+        <div class="search-content">
+            <h2 class="search-heading">Start Typing and Hit Enter</h2>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search anything..." id="searchInput">
+                <img src="./images/search-icon.png" alt="Search Icon" class="search-icon"
+                    onclick="performSearch()">
+            </div>
+        </div>
+        <div class="close-search" onclick="closeSearch()">✖</div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">✖</button>
+        <div class="menu-title">Menu</div>
+        <a href="Home.html" class="menu-item">HOME <span>&#8250;</span></a>
+        <a href="#card" class="menu-item">SHOP <span>&#8250;</span></a>
+        <a href="slider.html" class="menu-item">FEATURED <span>&#8250;</span></a>
+        <a href="#pages" class="menu-item">PAGES <span>&#8250;</span></a>
+        <a href="#footer" class="menu-item">BLOGS <span>&#8250;</span></a>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    <!-- Carousel -->
+    <div id="glassesCarousel" class="carousel slide hidden" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./images/slide-show.jpg"
+                    class="d-block w-100" alt="Glasses Slide 1">
+                <div class="carousel-caption">
+                    <p>TOP SALE</p>
+                    <h2>Design Glasses</h2>
+                    <p>Modern and timeless glasses from the best actress</p>
+                    <a href="#" class="btn btn-shop">Shop Now</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./images/slide-show2.jpg"
+                    class="d-block w-100" alt="Glasses Slide 2">
+                <div class="carousel-caption">
+                    <p>NEW COLLECTION</p>
+                    <h2>Trendy Eyewear</h2>
+                    <p>Upgrade your style with our latest collection</p>
+                    <a href="#" class="btn btn-shop">Shop Now</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#glassesCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#glassesCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Special Collections -->
+    <div class="special-collections hidden">
+        <h2>SPECIAL COLLECTIONS</h2>
+        <div class="underline"></div>
+        <div class="filter-buttons">
+            <a href="slider.html"><button class="filter-button active">New Arrivals</button></a>
+            <a href="bestsellers.html"><button class="filter-button active">Best Sellers</button></a>
+            <a href="top.html"><button class="filter-button active">Top Rates</button></a>
+        </div>
+    </div>
+
+    <!-- Video Section Start -->
+    <div class="container mt-5" id="video-section">
+        <h3 class="section-title">Watch Our Latest Video</h3>
+        <p class="video-description">Check out our latest video to learn more about glasses and eyewear.</p>
+
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/p0m2OtYvIDk"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+    <!-- Video Section End -->
+
+    <section class="special-collection text-center mt-5">
+        <h2>GLASSES & LENSES</h2>
+        <div class="underline"></div>
+
+        <div class="toggle-buttons">
+            <button class="btn btn-custom" onclick="showSection('glasses-section')">Glasses</button>
+            <button class="btn btn-custom" onclick="showSection('lenses-section')">Lenses</button>
+        </div>
+    </section>
+
+    <!-- Glasses Section -->
+    <div id="glasses-section">
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Glasses Product 1 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('glasses1')">
+                    <img src="./images/glasses1.jpg"
+                        alt="Oval Flat Lens Sunglasses">
+                    <h6>Oval Flat Lens Sunglasses</h6>
+                    <p><span class="old-price"><del>$180.00</del></span> <span class="price">$89.00</span></p>
+                </div>
+                <!-- Glasses Product 2 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('glasses2')">
+                    <img src="./images/glasses2.jpg"
+                        alt="Nina Cat Eye Sunglasses">
+                    <h6>Nina Cat Eye Sunglasses</h6>
+                    <p><span class="old-price"><del>$200.00</del></span> <span class="price">$145.00</span></p>
+                </div>
+                <!-- Glasses Product 3 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('glasses3')">
+                    <img src="./images/glasses3.jpg"
+                        alt="Clubmaster Square Sunglasses">
+                    <h6>Clubmaster Square Sunglasses</h6>
+                    <p><span class="old-price"><del>$500.00</del></span> <span class="price">$430.00</span></p>
+                </div>
+                <!-- Glasses Product 4 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('glasses4')">
+                    <img src="./images/glasses4.jpg"
+                        alt="Clubmaster Square Prescription">
+                    <h6>Clubmaster Square Prescription</h6>
+                    <p><span class="old-price"><del>$250.00</del></span> <span class="price">$212.00</span></p>
+                </div>
+                <!-- Glasses Product 5 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('glasses5')">
+                    <img src="./images/glasses5.jpg"
+                        alt="Octagonal Flat Lens Sunglasses">
+                    <h6>Octagonal Flat Lens Sunglasses</h6>
+                    <p><span class="old-price"><del>$45.00</del></span> <span class="price">$32.00</span></p>
+                </div>
+                <!-- Glasses Product 6 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('glasses6')">
+                    <img src="./images/glasses6.jpg"
+                        alt="Clubround Round Sunglasses">
+                    <h6>Clubround Round Sunglasses</h6>
+                    <p><span class="old-price"><del>$60.00</del></span> <span class="price">$42.00</span></p>
+                </div>
+                <!-- Glasses Product 7 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('glasses7')">
+                    <img src="./images/glasses7.jpg"
+                        alt="Prescription Eyeglass Frames">
+                    <h6>Prescription Eyeglass Frames</h6>
+                    <p><span class="old-price"><del>$30.00</del></span> <span class="price">$22.00</span></p>
+                </div>
+                <!-- Glasses Product 8 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('glasses8')">
+                    <img src="./images/glasses8.jpg"
+                        alt="Double Round Sunglasses">
+                    <h6>Double Round Sunglasses</h6>
+                    <p><span class="old-price"><del>$30.00</del></span> <span class="price">$21.00</span></p>
+                </div>
+                <!-- Glasses Product 9 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('glasses9')">
+                    <img src="./images/glasses9.jpg"
+                        alt="Hexagonal Sunglasses">
+                    <h6>Hexagonal Sunglasses</h6>
+                    <p><span class="old-price"><del>$18.00</del></span> <span class="price">$12.00</span></p>
+                </div>
+                <!-- Glasses Product 10 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('glasses10')">
+                    <img src="./images/glasses10.jpg"
+                        alt="Liteforce Square Sunglasses">
+                    <h6>Liteforce Square Sunglasses</h6>
+                    <p><span class="old-price"><del>$100.00</del></span> <span class="price">$80.00</span></p>
+                </div>
+                <!-- Glasses Product 11 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('glasses11')">
+                    <img src="./images/glasses11.jpg"
+                        alt="Gradient Aviator Sunglasses">
+                    <h6>Gradient Aviator Sunglasses</h6>
+                    <p><span class="old-price"><del>$300.00</del></span> <span class="price">$211.00</span></p>
+                </div>
+                <!-- Glasses Product 12 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('glasses12')">
+                    <img src="./images/glasses12.jpg"
+                        alt="Aviator Sunglasses">
+                    <h6>Aviator Sunglasses</h6>
+                    <p><span class="old-price"><del>$400.00</del></span> <span class="price">$312.00</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lenses Section -->
+    <div id="lenses-section" class="hidden-section">
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Lenses Product 1 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('lenses1')">
+                    <img src="./images/lenses1.jpg" alt="Blue Light Lenses">
+                    <h6>Blue Light Lenses</h6>
+                    <p><span class="old-price"><del>$100.00</del></span> <span class="price">$79.00</span></p>
+                </div>
+                <!-- Lenses Product 2 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('lenses2')">
+                    <img src="./images/lenses2.jpg"
+                        alt="Anti-Reflective Lenses">
+                    <h6>Anti-Reflective Lenses</h6>
+                    <p><span class="old-price"><del>$120.00</del></span> <span class="price">$99.00</span></p>
+                </div>
+                <!-- Lenses Product 3 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('lenses3')">
+                    <img src="./images/lenses3.jpg" alt="Transition Lenses">
+                    <h6>Transition Lenses</h6>
+                    <p><span class="old-price"><del>$149.00</del></span> <span class="price">$129.00</span></p>
+                </div>
+                <!-- Lenses Product 4 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('lenses4')">
+                    <img src="./images/lenses4.jpg" alt="Multifocal Lenses">
+                    <h6>Multifocal Lenses</h6>
+                    <p><span class="old-price"><del>$249.00</del></span> <span class="price">$199.00</span></p>
+                </div>
+                <!-- Lenses Product 5 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('lenses5')">
+                    <img src="./images/lenses5.jpg"
+                        alt="Polarized Lenses">
+                    <h6>Polarized Lenses</h6>
+                    <p><span class="old-price"><del>$89.00</del></span> <span class="price">$69.00</span></p>
+                </div>
+                <!-- Lenses Product 6 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('lenses6')">
+                    <img src="./images/lenses6.jpg" alt="Photochromic Lenses">
+                    <h6>Photochromic Lenses</h6>
+                    <p><span class="old-price"><del>$129.00</del></span> <span class="price">$99.00</span></p>
+                </div>
+                <!-- Lenses Product 7 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('lenses7')">
+                    <img src="./images/lenses7.jpg"
+                        alt="UV Protection Lenses">
+                    <h6>UV Protection Lenses</h6>
+                    <p><span class="old-price"><del>$59.00</del></span> <span class="price">$49.00</span></p>
+                </div>
+                <!-- Lenses Product 8 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('lenses8')">
+                    <img src="./images/lenses8.jpg"
+                        alt="High-Index Lenses">
+                    <h6>High-Index Lenses</h6>
+                    <p><span class="old-price"><del>$199.00</del></span> <span class="price">$149.00</span></p>
+                </div>
+                <!-- Lenses Product 9 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('lenses9')">
+                    <img src="./images/lenses9.jpg"
+                        alt="Anti-Fog Lenses">
+                    <h6>Anti-Fog Lenses</h6>
+                    <p><span class="old-price"><del>$69.00</del></span> <span class="price">$59.00</span></p>
+                </div>
+                <!-- Lenses Product 10 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('lenses10')">
+                    <img src="./images/lenses10.jpg"
+                        alt="Scratch-Resistant Lenses">
+                    <h6>Scratch-Resistant Lenses</h6>
+                    <p><span class="old-price"><del>$79.00</del></span> <span class="price">$69.00</span></p>
+                </div>
+                <!-- Lenses Product 11 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('lenses11')">
+                    <img src="./images/lenses11.jpg"
+                        alt="Blue Light Blocking Lenses">
+                    <h6>Blue Light Blocking Lenses</h6>
+                    <p><span class="old-price"><del>$89.00</del></span> <span class="price">$79.00</span></p>
+                </div>
+                <!-- Lenses Product 12 -->
+                <div class="col-6 col-md-3 product-card" onclick="showProductDetails('lenses12')">
+                    <img src="./images/lenses12.jpg" alt="Progressive Lenses">
+                    <h6>Progressive Lenses</h6>
+                    <p><span class="old-price"><del>$299.00</del></span> <span class="price">$249.00</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details Section -->
+    <div id="product-details-section" class="hidden-section">
+        <div class="container mt-5">
+            <button class="btn btn-secondary mb-3" onclick="goBack()">← Back</button>
+            <div class="row">
+                <div class="col-md-6">
+                    <img id="product-details-img" src="" alt="Product Image" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <h1 id="product-details-title"></h1>
+                    <p id="product-details-price" class="price text-success"></p>
+                    <p class="text-danger">🔥 Hurry! Only 10 Left in Stock</p>
+                    <p id="product-details-description"></p>
+                    <a href="payment.html" class="btn btn-primary">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="container mt-5">
+        <div id="pages" class="row">
+            <div class="col-md-6">
+                <h3 class="section-title">TESTIMONIALS</h3>
+                <div class="testimonial-box">
+                    <p>Saved our business! We have no regrets! Thanks for the great service. Klasie is worth much more
+                        than I paid.</p>
+                    <div class="testimonial-author">
+                        <img src="./images/user.jpg"
+                            alt="User">
+                        <div>
+                            <h6>DESTINEE</h6>
+                            <span>Marketing Personal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h3 class="section-title">LATEST NEWS</h3>
+                <div class="news-box">
+                    <div class="news-image">
+                        <img src="./images/news.jpg"
+                            alt="News Image">
+                        <span class="news-date">07.JAN.2024</span>
+                    </div>
+                    <div class="news-content">
+                        <h5>How To Wear Cat Eye Glasses</h5>
+                        <p>Where can I get some? Etiam risus diam, porttitor vitae ultricies quis, dapibus id dolor...
+                        </p>
+                        <a href="#">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="container mt-5" id="reviews-section">
+        <h3 class="section-title">Customer Reviews</h3>
+        <div class="reviews-box">
+            <div class="reviews-wrapper">
+                <div class="review">
+                    <div class="review-author">
+                        <img src="https://klasie-store-demo.myshopify.com/cdn/shop/files/testimonial-img1.png?v=1704630681"
+                            alt="User">
+                        <div>
+                            <h6>John Doe</h6>
+                            <span>Verified Buyer</span>
+                        </div>
+                    </div>
+                    <p class="review-content">"Great quality sunglasses! Love the fit and style. Will definitely
+                        purchase again."</p>
+                    <div class="rating">
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+
+                <div class="review">
+                    <div class="review-author">
+                        <img src="https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg"
+                            alt="User">
+                        <div>
+                            <h6>Jane Smith</h6>
+                            <span>Verified Buyer</span>
+                        </div>
+                    </div>
+                    <p class="review-content">"Amazing service and fast delivery. The sunglasses are perfect for my
+                        summer look!"</p>
+                    <div class="rating">
+                        <span>⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+
+                <div class="review">
+                    <div class="review-author">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2qB43KRtCEPZFNRHTFEy_mEXw2Fvvq88jFw&s"
+                            alt="User">
+                        <div>
+                            <h6>Alex Brown</h6>
+                            <span>Verified Buyer</span>
+                        </div>
+                    </div>
+                    <p class="review-content">"Love the sunglasses! Perfect for sunny days. Will recommend to friends."
+                    </p>
+                    <div class="rating">
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Review submission form -->
+        <div class="submit-review">
+            <h4>Submit Your Review</h4>
+            <form>
+                <textarea class="review-text" placeholder="Write your review here..." rows="4" required></textarea>
+                <div class="rating-submit">
+                    <label for="rating">Rating: </label>
+                    <select id="rating" required>
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="1">⭐</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- contact us -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact-container">
+                    <h3>Contact Us</h3>
+                    <p class="address-box">📍 Address: Aptech Site Center, Karachi, Pakistan</p>
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label class="form-label">FULL NAME</label>
+                                <input type="text" class="form-control" placeholder="Name">
+                            </div>
+                            <div class="col">
+                                <label class="form-label">EMAIL ADDRESS</label>
+                                <input type="email" class="form-control" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">SUBJECT</label>
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">MESSAGE</label>
+                            <textarea class="form-control" rows="4" placeholder="Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14472.358015242193!2d66.9851923!3d24.9180271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33f1f7d5b7b79%3A0xa2c3f6c2b21a97c!2sAptech%20Computer%20Education%20(Site%20Center)!5e0!3m2!1sen!2s!4v1710345678901"
+                        allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Customer Care</h5>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Address Store</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Receivers & Amplifiers</a></li>
+                        <li><a href="#">Store Locations</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Categories</h5>
+                    <ul>
+                        <li><a href="#">Women's Eyeglasses</a></li>
+                        <li><a href="#">Men's Eyeglasses</a></li>
+                        <li><a href="#">Ray-Ban Eyeglasses</a></li>
+                        <li><a href="#">Multifocal's</a></li>
+                        <li><a href="#">Designer Eyeglasses</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Newsletter</h5>
+                    <p>Get notified of new products, limited releases, and more.</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Your email address...">
+                        <button>SUBSCRIBE</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col text-center">
+                    <img src="./images/logo.png"
+                        alt="Klasie Logo" style="height: 150px;">
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="payment-icons">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Old_Visa_Logo.svg" alt="Visa">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="MasterCard">
+                </div>
+                <p>© Copyright 2024 | <strong>ELITESPEX</strong> by ThemeOcean. Powered by E-Project.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

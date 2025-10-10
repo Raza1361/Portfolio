@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Age Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="title">
+      <h1>Age Calculator</h1>
+      <p>Enter your Date of Birth and get your exact age, next birthday countdown, and more.</p>
+    </div>
+
+    <div class="card">
+      <div class="grid">
+        <section class="panel">
+          <h3>Basic Details</h3>
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" max="" />
+          <div id="error" class="error" style="display:none"></div>
+
+          <div class="row" style="margin-top:12px">
+            <button class="btn btn-primary" id="calcBtn">Calculate</button>
+            <button class="btn btn-ghost" id="clearBtn">Clear</button>
+            <span id="todayTag" class="badge" title="Your device date">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 3v4M17 3v4M3 11h18M5 7h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span id="todayText"></span>
+            </span>
+          </div>
+
+          <div id="results" style="margin-top:16px; display:none">
+            <div class="stats">
+              <div class="stat">
+                <p>Years</p>
+                <h4 id="years">—</h4>
+              </div>
+              <div class="stat">
+                <p>Months</p>
+                <h4 id="months">—</h4>
+              </div>
+              <div class="stat">
+                <p>Days</p>
+                <h4 id="days">—</h4>
+              </div>
+              <div class="stat">
+                <p>Total Days Lived</p>
+                <h4 id="totalDays">—</h4>
+              </div>
+              <div class="stat">
+                <p>Hours</p>
+                <h4 id="hours">—</h4>
+              </div>
+              <div class="stat">
+                <p>Minutes</p>
+                <h4 id="minutes">—</h4>
+              </div>
+              <div class="stat">
+                <p>Seconds</p>
+                <h4 id="seconds">—</h4>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel">
+          <h3>Next Birthday 🎂</h3>
+          <div id="bdayBox">
+            <p style="margin:0 0 8px">Your upcoming birthday:</p>
+            <div class="stat" style="margin:8px 0">
+              <h4 id="nextBdayDate">—</h4>
+              <p id="nextBdayLeft">—</p>
+            </div>
+            <div class="stat" style="margin:8px 0">
+              <p style="margin:0 0 6px">Age you will turn</p>
+              <h4 id="turning">—</h4>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <footer>
+        Made with ♥ for you. Works fully offline in your browser.
+      </footer>
+    </div>
+  </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

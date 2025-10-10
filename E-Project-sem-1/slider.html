@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Arrivals</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-senrif;
+        }
+
+        body {
+            background: #f4f4f4;
+            text-align: center;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            color: #333;
+            padding: 15px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            color: #3b82f6;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            transition: 0.4s ease;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background: #1f2937;
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+                animation: slideDown 0.4s ease;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .slider-container {
+            width: 90%;
+            margin: 80px auto 50px auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            flex: 0 0 33.33%;
+            padding: 10px;
+            transition: transform 0.5s;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .card h3 {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #222;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: gray;
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 10;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                flex: 0 0 100%;
+            }
+
+            .card {
+                transform: scale(0.9);
+            }
+
+            .slide.active .card {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">New Arrivals</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="bestsellers.html">Best Sellers</a></li>
+            <li><a href="top.html">Top Rates</a></li>
+        </ul>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    </nav>
+
+    <div class="slider-container">
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <div class="slider">
+            <div class="slide">
+                <div class="card">
+                    <img src="./images/best1.jpg" alt="Card 1">
+                    <h3>BEST EYE GLASSES</h3>
+                    <p>Perfect eye protection.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="card">
+                    <img src="./images/best2.jpg" alt="Card 2">
+                    <h3>MEN GLASSES</h3>
+                    <p>Top trending styles.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="card">
+                    <img src="./images/best3.jpg" alt="Card 3">
+                    <h3>WEAR OF CEO</h3>
+                    <p>Best for executives.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="card">
+                    <img src="./images/best4.jpg" alt="Card 4">
+                    <h3>SPONSOR GLASSES</h3>
+                    <p>Fashionable styles.</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="card">
+                    <img src="./images/best5.jpg" alt="Card 5">
+                    <h3>EXCLUSIVE DESIGN</h3>
+                    <p>Unique & stylish.</p>
+                </div>
+            </div>
+        </div>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Best Sellers. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let index = 1;
+        const slider = document.querySelector(".slider");
+        const slides = document.querySelectorAll(".slide");
+        const totalSlides = slides.length;
+        const slideWidth = 100 / (window.innerWidth > 768 ? 3 : 1);
+
+        const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[totalSlides - 1].cloneNode(true);
+
+        slider.appendChild(firstClone);
+        slider.insertBefore(lastClone, slides[0]);
+
+        let position = -slideWidth;
+        slider.style.transform = `translateX(${position}%)`;
+
+        function moveSlide(step) {
+            index += step;
+            position = -index * slideWidth;
+            slider.style.transition = "transform 0.5s ease-in-out";
+            slider.style.transform = `translateX(${position}%)`;
+
+            setTimeout(() => {
+                if (index >= totalSlides + 1) {
+                    index = 1;
+                    position = -index * slideWidth;
+                    slider.style.transition = "none";
+                    slider.style.transform = `translateX(${position}%)`;
+                } else if (index <= 0) {
+                    index = totalSlides;
+                    position = -index * slideWidth;
+                    slider.style.transition = "none";
+                    slider.style.transform = `translateX(${position}%)`;
+                }
+            }, 500);
+        }
+
+        let autoSlide = setInterval(() => moveSlide(1), 3000);
+
+        document.querySelector(".slider-container").addEventListener("mouseenter", () => clearInterval(autoSlide));
+        document.querySelector(".slider-container").addEventListener("mouseleave", () => {
+            autoSlide = setInterval(() => moveSlide(1), 3000);
+        });
+
+        const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <div id="game-container">
+        <h1>Guess the Number Game</h1>
+        <p>Guess a number between 1 and 100:</p>
+        <input type="number" id="guessInput" min="1" max="100" />
+        <button onclick="checkGuess()">Guess</button>
+
+        <div class="message" id="message"></div>
+        <button id="resetButton" onclick="resetGame()" style="display: none;">Play Again</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
